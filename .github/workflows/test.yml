@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  # Run each time we push and pull requests
+  push:
+  pull_request:
+  # Cron job
+  # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
+  schedule:
+    # https://crontab.guru/#0_0_1_*_*
+    - cron: "0 0 1 * *"
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup prerequisites
+        run: |
+          sudo apt update
+      - name: Install dependencies
+        run: |
+          pip install -e ".[test]"
+      - name: Run test
+        run: |
+          pip install coverage
+          coverage run --source=. -p -m pytest tests/
+      - name: Upload coverage to Codecov
+        # Use the v1 tag of: https://github.com/codecov/codecov-action
+        uses: codecov/codecov-action@v1
+        with:
+          flags: unittests
+          name: codecov-umbrella
