@@ -1,0 +1,92 @@
+# ### This will ignore all files without extension ###
+# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+# ### END ###
+
+# We want to unignore the makefiles
+!*makefile
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# svn
+.svn/
+
+# Backups
+*~
+*BAK
+*.bak*
+*.swp
+*.swm
+*.swo
+
+# Python
+*.pyc
+*.status
+.ipynb_checkpoints/
+
+# Doxygen
+html/
+
+#BOUT
+*.log*
+*.err*
+*log.*
+*.nc
+*.png
+*.pdf
+*.zip
+
+# CELMA
+visualization*/
+nx_*/
+ny_*/
+nz_*/
+MES_results/
+
+# Miscellaneous
+*delme*
+*tmp*
+*postLogs*
+nout*/
+*.pickle
+*.avi
+*.mp4
+.gitconfig
+
+# pyCharm
+.idea
+
+# Vscode
+.devcontainer/
+.vscode*/
